@@ -2,8 +2,8 @@ const campo = document.querySelector(".campo");
 const lista = document.querySelector(".lista");
 const adicionar = document.querySelector(".adicionar");
 const botao = document.querySelector(".b");
-const botao2 = document.querySelector("#b2");
-const botao3 = document.querySelector("#b3");
+const botao2 = document.querySelector(".b");
+const botao3 = document.querySelector(".b");
 const tarefa1 = document.querySelector("#f1");
 const tarefa2 = document.querySelector("#f2");
 const tarefa3 = document.querySelector("#f3");
@@ -22,18 +22,20 @@ adicionar.addEventListener('click', function () {
 })
 
 
-botao.addEventListener('click', function (e) {
+botao.addEventListener('click', function () {
+  apagar(e)
+})
+
+//Remove Tarefa:
+
+function apagar(e) {
   const tarefa = e.target.parentNode;
 
   tarefa.remove()
-})
-
-function apagar() {
-  
 }
 
 function criaTarefa(tarefa) {
   return `<li class="tarefa"> ${tarefa} <button class="b"> Apagar</button></li>`
 }
-//Remove Tarefa:
+
 
