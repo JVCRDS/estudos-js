@@ -1,0 +1,37 @@
+const namesArray = [
+  "João", "Maria", "carlos", "Ana", "Lucas", 
+  "fernanda", "Gabriel", "maria", "CARLOS", "ana",
+  "LUCAS", "beatriz", "Ricardo", "joão", "FELIPE",
+  "gabriel", "Beatriz", "RICARDO", "felipe", "João"
+];
+
+// Tirar nomes repetidos e formatar no Portugues Corretamente ex: se 'LUCAS' retornar 'Lucas'
+
+//deixar os nomes tods iguais
+
+const nomesFormatados = namesArray.map((nome => nome.toLowerCase()))
+
+//tirar nomes repetidos
+
+let nomesUnicos = []
+
+for (const nomeFormatado of nomesFormatados) {
+  const nomeJaExiste = nomesUnicos.find(nome => nome === nomeFormatado)
+
+  if (nomeJaExiste) continue
+
+  nomesUnicos.push(nomeFormatado)
+}
+
+//colocar letras maiusculas nas primeiras letras
+
+const nomesComletraMaiuscula = nomesUnicos.map(nomeLetraMinuscula => {
+  return nomeLetraMinuscula.split("").map((letra, index) => {
+    if (index === 0) return letra.toLocaleUpperCase();
+    
+    return letra;
+  }).join('');
+
+})
+
+console.log(nomesComletraMaiuscula)

@@ -1,4 +1,5 @@
 // Filter, map, reduce
+// Filter ignora qualquer return que não seja o seu próprio
 
 // Retorne os números maiores que 10
 const numeros = [5, 50, 80, 1, 2, 3, 5, 8, 7, 11, 22, 27];
