@@ -1,13 +1,14 @@
-// ViaCep, utilizar na criação de um html que possui um input text para o usuario digitar um cep e devolver o conteudo.
+// // ViaCep, utilizar na criação de um html que possui um input text para o usuario digitar um cep e devolver o conteudo.
+// // querySelector = utilizar ".", quando classe e "#", quando id.
 
 const butao = document.querySelector(".enviar");
-// querySelector = utilizar ".", quando classe e "#", quando id.
 const cep = document.querySelector(".texto");
+const retangulo = document.querySelector(".retangulo");
 
 butao.addEventListener("click", async () => {
   const cepLimpo = cep.value.replace(/\D+/g, "");
   if (cepLimpo.length !== 8) return alert("CEP INVALIDO");
-  const resultado = await fetchCep(cepLimpo);
+  exibeDados(cepLimpo);
 });
 
 async function fetchCep(cep) {
@@ -17,6 +18,11 @@ async function fetchCep(cep) {
   return result;
 }
 
-async function exibeDados(fetch) {
-  fe
+async function exibeDados(cep) {
+  const resultado = await fetchCep(cep);
+  const props = resultado;
+  for (const prop in props) {
+    retangulo.innerText += `${prop}:${resultado[prop]}\n`;
+  }
 }
+

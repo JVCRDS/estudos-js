@@ -1,11 +1,11 @@
-const contactId = "@contact.id";
-const channelId = "@canal.token";
-const txtCliente = "@chat.mensagem.texto"
+const contactId = "";
+const channelId = "";
+const txtCliente = "";
 
 Run();
 
 async function Run() {
-  const cpfValido = validaCpf(txtCliente);  
+  const cpfValido = validaCpf(txtCliente);
   let message = "";
   if (cpfValido === true) {
     message = "CPF Válido";
@@ -36,19 +36,19 @@ async function sendMessage(message, isWhisper = false, contactId, channelId) {
   }
 }
 
-function DescobrePrimeiroDigito(arrayDeCPF) {
+function descobreDigito(arrayDeCPF, x, y, slicePosition) {
+  console.log(x, y);
+
   const numerosParaMultiplicação = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
   let numerosParaSoma = [];
-  let Y = 1,
-    X = 0;
-  const cpfArray = arrayDeCPF.split("").slice(0, 9);
+  const cpfArray = arrayDeCPF.split("").slice(0, slicePosition);
   for (const cpfIndex in cpfArray) {
     const numeroCalculado =
-      parseInt(cpfArray[cpfIndex]) * numerosParaMultiplicação[Y];
+      parseInt(cpfArray[cpfIndex]) * numerosParaMultiplicação[y];
 
-    numerosParaSoma[X] = numeroCalculado;
-    Y++;
-    X++;
+    numerosParaSoma[x] = numeroCalculado;
+    x++;
+    y++;
   }
 
   let somaTotal = 0;
@@ -57,35 +57,9 @@ function DescobrePrimeiroDigito(arrayDeCPF) {
     somaTotal += numerosParaSoma[numIndex];
   }
 
-  const primeiroDigito = (somaTotal * 10) % 11;
-
-  return primeiroDigito;
-}
-
-function DescobreSegundoDigito(arrayDeCPF) {
-  const numerosParaMultiplicação = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
-  let numerosParaSoma = [];
-  let Y = 0,
-    X = 0;
-  const cpfArray = arrayDeCPF.split("").slice(0, 10);
-  for (const cpfIndex in cpfArray) {
-    const numeroCalculado =
-      parseInt(cpfArray[cpfIndex]) * numerosParaMultiplicação[Y];
-
-    numerosParaSoma[X] = numeroCalculado;
-    Y++;
-    X++;
-  }
-
-  let somaTotal = 0;
-
-  for (const numIndex in numerosParaSoma) {
-    somaTotal += numerosParaSoma[numIndex];
-  }
-
-  const segundoDigito = (somaTotal * 10) % 11;
-
-  return segundoDigito;
+  const digito = (somaTotal * 10) % 11;
+  console.log(x, y);
+  return digito;
 }
 
 function validaCpf(cpfzin) {
@@ -94,10 +68,8 @@ function validaCpf(cpfzin) {
   if (cpfLimpo.length !== 11) return false;
   const digito10 = parseInt(cpfLimpo[9]);
   const digito11 = parseInt(cpfLimpo[10]);
-  const digito10Descoberto = DescobrePrimeiroDigito(cpfLimpo);
-  const digito11Descoberto = DescobreSegundoDigito(cpfLimpo);
+  const digito10Descoberto = descobreDigito(cpfLimpo, 0, 1, 9);
+  const digito11Descoberto = descobreDigito(cpfLimpo, 0, 0, 10);
 
   return digito10Descoberto === digito10 && digito11Descoberto === digito11;
 }
-
-

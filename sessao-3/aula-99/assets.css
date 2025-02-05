@@ -1,5 +1,5 @@
 body {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -13,9 +13,8 @@ p {
 }
 
 .retangulo {
-  width: 300px;  /* Largura do retângulo */
-  height: 150px; /* Altura do retângulo */
-  background-color: #dce2e7; /* Cor de fundo azul */
+  width: 300px;  /* Largura do retângulo *//* Altura do retângulo */
+  background-color: #798187; /* Cor de fundo azul */
   border-radius: 20px; /* Bordas arredondadas */
   display: flex;
   align-items: center;
